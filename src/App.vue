@@ -1,13 +1,19 @@
 <template>
   <div id="app">
-    <h1>Todo App</h1>
-    <input type="text" v-model="name" placeholder="Todo name">
-    <input type="text" v-model="description" placeholder="Todo description">
-    <button v-on:click="createTodo">Create Todo</button>
-    <div v-for="item in todos" :key="item.id">
-      <h3>{{item.name}}</h3>
-      <h3>{{item.description}}</h3>
-    </div>
+    <authenticator>
+      <template v-slot="{user, signOut}">
+        <h1>Hello {{user.username}}!</h1>
+        <button @click="signOut">Sign Out</button>
+        <h1>Todo App</h1>
+        <input type="text" v-model="name" placeholder="Todo name">
+        <input type="text" v-model="description" placeholder="Todo description">
+        <button v-on:click="createTodo">Create Todo</button>
+        <div v-for="item in todos" :key="item.id">
+          <h3>{{item.name}}</h3>
+          <h3>{{item.description}}</h3>
+        </div>
+      </template>
+    </authenticator>
 
   </div>
 
@@ -19,6 +25,8 @@
   import {createTodo} from './graphql/mutations';
   import {listTodos} from './graphql/queries'
   import { onCreateTodo } from './graphql/subscriptions';
+  import {Authenticator} from '@aws-amplify/ui-vue'
+  import '@aws-amplify/ui-vue/styles.css'
 
   export default {
     name: 'App',
@@ -32,6 +40,9 @@
         description:'',
         todos:[]
       }
+    },
+    components:{
+      Authenticator
     },
     methods:{
       async createTodo(){
