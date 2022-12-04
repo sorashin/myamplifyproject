@@ -30,6 +30,12 @@
       },
       "auth": {
         "myamplifyprojectc9247ad3": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2lsa87ee2d2ew",
+          "type": "manual"
+        }
       }
     }
   }
