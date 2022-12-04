@@ -3,7 +3,9 @@
     <authenticator>
       <template v-slot="{ user, signOut }">
         <h1>Hello {{ user.username }}!</h1>
-        <button @click="signOut">Sign Out</button>
+        <v-btn @click="signOut" prepend-icon="mdi-vuetify">
+          Sign Out
+        </v-btn>
         <h1>Todo App</h1>
         <input type="text" v-model="name" placeholder="Todo name" />
         <input type="text" v-model="description" placeholder="Todo description" />
